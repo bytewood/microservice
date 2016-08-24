@@ -1,13 +1,16 @@
-stage "Checkout"
-https://github.com/bytewood/microservice.git
+node {
+    stage "Checkout"
+    https://github.com/bytewood/microservice.git
 
-stage "Build"
-sh "./gradlew clean build -x test"
+    stage "Build"
+    sh "./gradlew clean build -x test"
 
-stage "Unit Test"
-sh "./gradlew test"
+    stage "Unit Test"
+    sh "./gradlew test"
 
-//stage "Integration Test"
-//sh ".gradlewe integration"
+    //stage "Integration Test"
+    //sh ".gradlewe integration"
 
-stage "Containerize"
+    stage "Containerize"
+    echo "Dockerizing..."
+}
