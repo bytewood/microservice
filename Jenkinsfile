@@ -4,7 +4,7 @@ node {
 
     stage "Build"
     sh "chmod 755 gradlew"
-    sh "./gradlew -g /tmp clean build -x test --stacktrace"
+    sh "./gradlew --stacktrace -g /tmp clean build -x test"
 
     stage "Unit Test"
     sh "./gradlew -g /tmp test --stacktrace"
