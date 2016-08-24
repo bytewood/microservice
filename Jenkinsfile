@@ -1,6 +1,6 @@
 node {
     stage "Checkout"
-    git url: https://github.com/bytewood/microservice.git
+    git url: "https://github.com/bytewood/microservice.git"
 
     stage "Build"
     sh "./gradlew clean build -x test"
