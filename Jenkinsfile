@@ -4,13 +4,13 @@ node {
 
     stage "Build"
     sh "chmod 755 gradlew"
-    sh "./gradlew clean build -x test"
+    sh "./gradlew -g /tmp clean build -x test"
 
     stage "Unit Test"
-    sh "./gradlew test"
+    sh "./gradlew -g /tmp test"
 
     //stage "Integration Test"
-    //sh ".gradlewe integration"
+    //sh ".gradlew -g /tmp integration"
 
     stage "Containerize"
     echo "Dockerizing..."
