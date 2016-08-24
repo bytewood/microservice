@@ -1,0 +1,15 @@
+**/bin/
+**/.project
+**/.classpath
+**/.settings/
+**/build/
+/.gradle/
+/.idea/
+*.ipr
+/**/*.iml
+*.iws
+*.ids
+**/.sonar/
+.sonar_lock
+**/*.zip
+
