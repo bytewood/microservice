@@ -13,5 +13,5 @@ node {
     //sh ".gradlew integration"
 
     stage "Containerize"
-    echo "Dockerizing..."
+    sh "docker build -t bytewood/devops/microservice:${en.BUILD_NUMBER} ."
 }
