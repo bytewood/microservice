@@ -22,6 +22,6 @@ public class Application {
 
     @RequestMapping(value="/echo")
     public String echo(@RequestParam(name = "message") String message) {
-        return message + " " + ZonedDateTime.now();
+        return message + " " + ZonedDateTime.now() + System.getProperty("line.separator");
     }
 }
