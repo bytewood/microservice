@@ -10,7 +10,7 @@ buildscript {
         }
     }
  
-dependencies {
+    dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_gradle_plugin_version}"
         classpath "org.springframework.build.gradle:propdeps-plugin:${gradle_propdeps_plugin_version}"
     }
@@ -29,7 +29,7 @@ apply plugin: "propdeps-eclipse"
 apply plugin: "spring-boot"
 
 group = "org.bytewood.microservices"
-version="$major_version.$minor_version"
+jar.baseName = "app"
 
 idea {
     project {
@@ -38,21 +38,22 @@ idea {
     }
 }
 
-    repositories {
-        maven {
-            credentials {
-                username "${artifactory_user}"
-                password "${artifactory_password}"
-            }
-            url "${artifactory_contextUrl}/libs-release"
+repositories {
+    maven {
+        credentials {
+            username "${artifactory_user}"
+            password "${artifactory_password}"
         }
+        url "${artifactory_contextUrl}/libs-release"
     }
+}
 
 dependencies {
     compile ("org.springframework.boot:spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
     }
     compile "org.springframework.boot:spring-boot-starter-undertow"
+    testCompile "org.springframework.boot:spring-boot-starter-actuator"
 
     compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
 

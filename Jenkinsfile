@@ -1,6 +1,9 @@
 node {
+    def name = "microservice"
+    def image_name = "bytewood/ops/${name}"
+    def repo = "https://github.com/bytewood/${name}.git"
     stage "Checkout"
-    git url: "https://github.com/bytewood/microservice.git"
+    git url: "${repo}"
 
     stage "Build"
     sh "chmod 755 gradlew"
@@ -13,5 +16,8 @@ node {
     //sh ".gradlew integration"
 
     stage "Containerize"
-    sh "docker build -t bytewood/devops/microservice:${env.BUILD_NUMBER} ."
+    sh "docker build -t ${image_name}:${env.BUILD_NUMBER} -t ${image_name}:latest ."
+
+    stage "Deploy"
+    sh "docker push "
 }
