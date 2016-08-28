@@ -1,4 +1,6 @@
 server:
-  port: 8881
+  port: 8891
   contextPath: /api
+abc:
+    abc: "${ABC:pqr}"
 
