@@ -1,6 +1,18 @@
 server:
   port: 8881
-  contextPath: /api
+  contextPath: /api/0.1
 abc:
     abc: "${ABC:pqr}"
-
+spring:
+  application:
+    name: microservice
+  cloud:
+    consul:
+      host: consul
+      port: 8500
+      discovery:
+        healthCheckPath: ${server.contextPath}/health
+        healthCheckInterval: 1s
+        instanceId: ${spring.application.name}:${spring.application.instance_id:${hostname:localhost}}
+      config:
+        failFast: true

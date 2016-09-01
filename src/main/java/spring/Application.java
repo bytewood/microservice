@@ -3,7 +3,7 @@ package spring;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +14,7 @@ import java.time.ZonedDateTime;
  * © 2016 org.bytewood
  */
 @SpringBootApplication
+@EnableDiscoveryClient
 @RestController
 public class Application {
 
@@ -28,4 +29,5 @@ public class Application {
     public String echo(@RequestParam(name = "message") String message) {
         return message + " " + ZonedDateTime.now() + " " + settings.getAbc() + System.getProperty("line.separator");
     }
+
 }

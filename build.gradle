@@ -55,6 +55,8 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-undertow"
     compile "org.springframework.boot:spring-boot-starter-actuator"
 
+    compile "org.springframework.cloud:spring-cloud-starter-consul-discovery:1.0.2.RELEASE"
+
     compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
 
     testCompile "junit:junit"
@@ -67,4 +69,3 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.14.1'
 }
-
