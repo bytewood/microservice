@@ -16,14 +16,14 @@ docker run -d -p 8500:8500 --name consul consul agent -dev -client=0.0.0.0 -ui
 gradle bootRun -PSPRING_PROFILES_ACTIVE=...
 
 ##test
-curl http://localhost:8881/api/echo?message=hello
+curl http://localhost:8881/api/0.1/echo?message=hello | json
 curl http://localhost:8500/v1/health/service/microservice
 curl -D - http://...
 curl --head http://...
 
 ## Docker`ing
-./docker-build.sh bytewood/ops/microservice 0
-./docker-push.sh localhost:5000 bytewood/ops/microservice 0
+./container-build.sh bytewood/ops/microservice 0
+./container-push.sh localhost:5000 bytewood/ops/microservice 0
 
 ## Test registry
 curl --head http://localhost:5000/v2

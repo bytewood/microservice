@@ -69,3 +69,9 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.14.1'
 }
+
+bootRun {
+    systemProperties = [
+            "spring.profiles.active" : project.findProperty("SPRING_ACTIVE_PROFILES") ?: ''
+    ]
+}

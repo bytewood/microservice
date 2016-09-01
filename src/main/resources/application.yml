@@ -16,3 +16,8 @@ spring:
         instanceId: ${spring.application.name}:${spring.application.instance_id:${hostname:localhost}}
       config:
         failFast: true
+loopservice:
+  protocol: http
+  ip: localhost
+  port: 8882
+  path: /api/0.1/loop
