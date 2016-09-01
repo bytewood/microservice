@@ -1,7 +1,10 @@
 node {
+    def tag = "${env.BUILD_NUMBER}"
     def name = "microservice"
-    def image_name = "bytewood/ops/${name}"
-    def repo = "https://github.com/bytewood/${name}.git"
+    def repository = "bytewood/ops/${name}"
+    def registry = "localhost:5000"
+    def repo = "https://github.com/bytewood/ops-${name}.git"
+
     stage "Checkout"
     git url: "${repo}"
 
@@ -16,7 +19,8 @@ node {
     //sh ".gradlew integration"
 
     stage "Containerize"
-    sh "docker build -t ${image_name}:${env.BUILD_NUMBER} -t ${image_name}:latest ."
+    sh "chmod 755 container-build.sh"
+    sh "./container-build.sh ${repository} ${tag}"
 
     stage "Promotion"
     def userInput = input(
@@ -29,4 +33,6 @@ node {
 
     stage "Deploy"
     echo ("deploying ...")
+    sh "chmod 755 container-push.sh"
+    sh "./container-push.sh ${registry} ${repository} ${tag}"
 }
