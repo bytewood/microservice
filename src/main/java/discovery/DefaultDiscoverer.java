@@ -2,6 +2,7 @@ package discovery;
 
 import lombok.SneakyThrows;
 
+import java.net.URI;
 import java.net.URL;
 
 /**
@@ -17,7 +18,7 @@ public class DefaultDiscoverer implements Discoverer {
 
     @Override
     @SneakyThrows
-    public URL locate(String microservice) {
-        return new URL(settings.getProtocol(), settings.getIp(), settings.getPort(), settings.getPath());
+    public URI locate(String microservice) {
+        return settings.baseUri();
     }
 }

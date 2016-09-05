@@ -1,11 +1,11 @@
 package discovery;
 
-import java.net.URL;
+import java.net.URI;
 
 /**
  * © 2016 org.bytewood
  */
 public interface Discoverer {
 
-    URL locate(String microservice);
+    URI locate(String microservice);
 }

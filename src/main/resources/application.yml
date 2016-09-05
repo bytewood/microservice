@@ -20,4 +20,4 @@ loopservice:
   protocol: http
   ip: localhost
   port: 8882
-  path: /api/0.1/loop
+  context: /api/0.1
