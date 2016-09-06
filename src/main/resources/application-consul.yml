@@ -10,4 +10,4 @@ spring:
         healthCheckInterval: 1s
         instanceId: ${spring.application.name}:${spring.application.instance_id:${hostname:localhost}}
       config:
-        failFast: false
+        failFast: true
