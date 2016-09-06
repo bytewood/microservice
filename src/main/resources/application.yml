@@ -5,6 +5,6 @@ abc:
     abc: "${ABC:pqr}"
 loopservice:
   protocol: http
-  ip: localhost
+  ip: microservice-a
   port: 8882
   context: /api/0.1
