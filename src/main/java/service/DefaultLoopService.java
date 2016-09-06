@@ -35,7 +35,7 @@ public class DefaultLoopService implements LoopService {
         return Echo.builder()
                     .echoing(message)
                     .from("microservice")
-                    .instance(System.getProperty("hostname"))
+                    .instance(System.getProperty("spring.cloud.client.hostname"))
                     .timestamp(ZonedDateTime.now())
                     .serviceQuery(
                             Query.builder()
