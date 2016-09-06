@@ -3,6 +3,7 @@ package spring;
 import discovery.Discoverer;
 import discovery.consul.ConsulDiscoverer;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Profile;
  */
 @Profile("consul")
 @Configuration
+@EnableDiscoveryClient
 public class ConsulConfiguration {
 
     @Primary
