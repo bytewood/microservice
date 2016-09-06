@@ -22,11 +22,11 @@ curl -D - http://...
 curl --head http://...
 
 ## Docker`ing
-./container-build.sh bytewood/ops/microservice 0
-./container-push.sh localhost:5000 bytewood/ops/microservice 0
+./container-build.sh bytewood/ops-microservice 0
+./container-push.sh localhost:5000 bytewood/ops-microservice 0
 
 ## Test registry
 curl --head http://localhost:5000/v2
 curl http://localhost:5000/v2/_catalog
-curl http://localhost:5000/v2/bytewood/ops/microservice/tags/list
-curl http://localhost:5000/v2/bytewood/ops/microservice/manifests/[0, latest]
+curl http://localhost:5000/v2/bytewood/ops-microservice/tags/list
+curl http://localhost:5000/v2/bytewood/ops-microservice/manifests/[0, latest]
