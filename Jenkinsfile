@@ -1,7 +1,7 @@
 node {
     def tag = "${env.BUILD_NUMBER}"
     def name = "microservice"
-    def repository = "bytewood/ops/${name}"
+    def repository = "bytewood/ops-${name}"
     def registry = "localhost:5000"
     def repo = "https://github.com/bytewood/ops-${name}.git"
 
