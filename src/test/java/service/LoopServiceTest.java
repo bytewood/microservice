@@ -7,12 +7,14 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.client.RestOperations;
+import service.model.Echo;
+import service.model.Microservice;
 
 import java.net.URI;
-import java.net.URL;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 /**
@@ -21,7 +23,6 @@ import static org.mockito.Mockito.when;
 public class LoopServiceTest {
 
     private DefaultLoopService testObject;
-    private MicroserviceSettings microserviceASettings;
 
     @Mock
     private Discoverer discoverer;
@@ -35,17 +36,20 @@ public class LoopServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        microserviceASettings = MicroserviceSettings.builder()
-            .protocol("http")
+        MicroserviceSettings microserviceASettings = MicroserviceSettings.builder()
+                .protocol("http")
                 .ip("localhost")
                 .port(8888)
                 .context("/api/0.1")
                 .build();
 
+        Microservice microservice = new Microservice();
+        microservice.setName("microservice-a");
+
         when(discoverer.locate(anyString()))
                 .thenReturn(microserviceASettings.uri());
-        when(http.getForObject(anyString(), any(), endsWith("test message")))
-                .thenReturn("found microservice-a");
+        when(http.getForObject(anyString(), any()))
+                .thenReturn(microservice);
 
         testObject = new DefaultLoopService(http, discoverer, microserviceASettings);
     }
@@ -58,9 +62,9 @@ public class LoopServiceTest {
 
     @Test
     public void loop() throws Exception {
-        String actual = testObject.loop("test message");
-        assertThat(actual).isEqualTo("found microservice-a");
+        Echo actual = testObject.loop("test message");
+        assertThat(actual.getServiceQueries()).hasSize(1);
+        assertThat(actual.getEchoing()).isEqualTo("test message");
     }
-
 
 }
