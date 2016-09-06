@@ -72,6 +72,6 @@ task wrapper(type: Wrapper) {
 
 bootRun {
     systemProperties = [
-            "spring.profiles.active" : project.findProperty("SPRING_ACTIVE_PROFILES") ?: ''
+            "spring.profiles.active" : project.findProperty("SPRING_PROFILES_ACTIVE") ?: ''
     ]
 }
