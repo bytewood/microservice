@@ -1,4 +1,4 @@
-package spring.model;
+package service.model;
 
 import lombok.Builder;
 import lombok.Data;
@@ -10,5 +10,5 @@ import lombok.Data;
 @Builder
 public class Query {
     private String request;
-    private String response;
+    private Microservice response;
 }

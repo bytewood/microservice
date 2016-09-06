@@ -1,4 +1,4 @@
-package spring.model;
+package service.model;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,8 +1,10 @@
 package service;
 
+import service.model.Echo;
+
 /**
  * © 2016 org.bytewood
  */
 public interface LoopService {
-    String loop(String message);
+    Echo loop(String message);
 }

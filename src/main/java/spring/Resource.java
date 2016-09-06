@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import service.LoopService;
-import spring.model.Echo;
-import spring.model.Query;
+import service.model.Echo;
+import service.model.Query;
 
 import java.time.ZonedDateTime;
 
@@ -32,17 +32,7 @@ public class Resource {
 
     @RequestMapping(value="/loop")
     public Echo loop(@RequestParam(name = "message", required = false, defaultValue = "ZZZzzz... ") String message) {
-        return Echo.builder()
-                .echoing(message)
-                .from("microservice")
-                .instance(System.getProperty("hostname"))
-                .timestamp(ZonedDateTime.now())
-                .serviceQuery(
-                        Query.builder()
-                                .request("microservice-a")
-                                .response(loopService.loop(message))
-                                .build()
-                ).build();
+        return loopService.loop(message);
     }
 
 }

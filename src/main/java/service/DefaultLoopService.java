@@ -4,8 +4,12 @@ import discovery.Discoverer;
 import discovery.MicroserviceSettings;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.client.RestOperations;
+import service.model.Echo;
+import service.model.Microservice;
+import service.model.Query;
 
 import java.net.URI;
+import java.time.ZonedDateTime;
 
 /**
  * © 2016 org.bytewood
@@ -24,11 +28,22 @@ public class DefaultLoopService implements LoopService {
     }
 
     @Override
-    public String loop(String message) {
+    public Echo loop(String message) {
         URI uri = discoverer.locate("microservice-a");
         String url = resolveURL(uri);
-        log.debug("located microservice-a @ " + url);
-        return http.getForObject(url, String.class, message);
+        Microservice m = http.getForObject(url, Microservice.class, message);
+        return Echo.builder()
+                    .echoing(message)
+                    .from("microservice")
+                    .instance(System.getProperty("hostname"))
+                    .timestamp(ZonedDateTime.now())
+                    .serviceQuery(
+                            Query.builder()
+                                    .request("microservice-a")
+                                    .response(m)
+                                    .build()
+                    ).build();
+
     }
 
     String resolveURL(URI baseUri) {
