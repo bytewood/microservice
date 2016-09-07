@@ -1,9 +1,13 @@
 node {
-    def tag = "${env.BUILD_NUMBER}"
-    def name = "microservice"
-    def repository = "bytewood/ops-${name}"
+    def props = new Properties()
+    new File("gradle.properties").withInputStream {
+        stream -> props.load(stream)
+    }
+
+    def tag = "$props.application_version.${env.BUILD_NUMBER}"
+    def repository = "bytewood/$props.application_name"
     def registry = "localhost:5000"
-    def repo = "git@github.com:bytewood/ops-microservice.git"
+    def repo = "https://github.com/bytewood/$props.application_name.git"
     def scripts = "ops-scripts"
 
     stage "Checkout"
