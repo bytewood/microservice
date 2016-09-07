@@ -22,15 +22,15 @@ node {
     //sh "./gradlew integration"
 
     stage "Containerize"
-    sh "chmod 755 container-build.sh"
+    sh "chmod 755 $scripts/container-build.sh"
     sh "$scripts/container-build.sh ${repository} ${tag}"
 
     stage "Deploy"
-    sh "chmod 755 container-push.sh"
+    sh "chmod 755 $scripts/container-push.sh"
     sh "$scripts/container-push.sh ${registry} ${repository} ${tag}"
 
     stage "Tag"
-    sh 'chmod 755 git-tag.sh'
+    sh 'chmod 755 $scripts/git-tag.sh'
     sh "$scirpts/git-tag.sh ${tag}"
 
     stage "Promotion"
