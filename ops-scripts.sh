@@ -8,6 +8,6 @@ mkdir -p "$folder"
 cd "$folder"
 
 wget -O "$zipfile" "https://github.com/bytewood/ops-scripts/archive/$version.zip"
-unzip -j "$zipfile"
+unzip -o -j "$zipfile"
 rm -f "$zipfile"
 
