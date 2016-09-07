@@ -1,13 +1,12 @@
 #!/bin/bash
 
-version=`cat gradle.properties | grep ops-scripts_version | awk -F = '{print $2}'`
+version="$1"
 
-zipfile="$version.zip"
+zipfile="${version}.zip"
 folder="ops-scripts"
 mkdir -p "$folder"
 cd "$folder"
 
-wget -O "$zipfile" "https://github.com/bytewood/ops-scripts/archive/$version.zip"
+wget -O "$zipfile" "https://github.com/bytewood/ops-scripts/archive/${version}.zip"
 unzip -o -j "$zipfile"
 rm -f "$zipfile"
-
