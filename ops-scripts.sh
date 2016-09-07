@@ -1,7 +1,6 @@
 #!/bin/bash
 
-version=$1
-[ -z $verions ] && version=0.1.0
+version=`cat gradle.properties | grep ops-scripts_version | awk -F = '{print $2}'`
 
 zipfile="$version.zip"
 folder="ops-scripts"
