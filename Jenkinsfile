@@ -3,7 +3,7 @@ node {
     def name = "microservice"
     def repository = "bytewood/ops-${name}"
     def registry = "localhost:5000"
-    def repo = "https://github.com/bytewood/ops-${name}.git"
+    def repo = "git@github.com:bytewood/ops-microservice.git"
     def scripts = "ops-scripts"
 
     stage "Checkout"
