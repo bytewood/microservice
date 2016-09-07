@@ -1,7 +1,7 @@
 node {
     def name = "ops-microservice"
     def version = "0.1.0"
-    def ops-scripts-version="0.3.0"
+    def ops_scripts_version="0.3.0"
 
     def registry = "localhost:5000"
 
@@ -11,7 +11,7 @@ node {
 
     stage "Checkout"
     git url: "${repo}"
-    sh "chmod 755 ops-scripts.sh ${ops-scripts-version}"
+    sh "chmod 755 ops-scripts.sh ${ops_scripts_version}"
     sh "./ops-scripts.sh"
 
     stage "Build"
