@@ -11,8 +11,8 @@ node {
 
     stage "Checkout"
     git url: "${repo}"
-    sh "chmod 755 ops-scripts.sh ${ops_scripts_version}"
-    sh "./ops-scripts.sh"
+    sh "chmod 755 ops-scripts.sh"
+    sh "./ops-scripts.sh ${ops_scripts_version}"
 
     stage "Build"
     sh "chmod 755 gradlew"
