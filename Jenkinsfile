@@ -30,7 +30,7 @@ node {
     sh "$scripts/container-push.sh ${registry} ${repository} ${tag}"
 
     stage "Tag"
-    sh 'chmod 755 $scripts/git-tag.sh'
+    sh "chmod 755 $scripts/git-tag.sh"
     sh "$scripts/git-tag.sh ${tag}"
 
     stage "Promotion"
