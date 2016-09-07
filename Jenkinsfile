@@ -31,7 +31,7 @@ node {
 
     stage "Tag"
     sh 'chmod 755 $scripts/git-tag.sh'
-    sh "$scirpts/git-tag.sh ${tag}"
+    sh "$scripts/git-tag.sh ${tag}"
 
     stage "Promotion"
         def userInput = input(
