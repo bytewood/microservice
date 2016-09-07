@@ -4,9 +4,12 @@ node {
     def repository = "bytewood/ops-${name}"
     def registry = "localhost:5000"
     def repo = "https://github.com/bytewood/ops-${name}.git"
+    def scripts = "ops-scripts"
 
     stage "Checkout"
     git url: "${repo}"
+    sh "chmod 755 ops-scripts.sh"
+    sh "./ops-scripts.sh"
 
     stage "Build"
     sh "chmod 755 gradlew"
@@ -20,12 +23,15 @@ node {
 
     stage "Containerize"
     sh "chmod 755 container-build.sh"
-    sh "./container-build.sh ${repository} ${tag}"
+    sh "$scripts/container-build.sh ${repository} ${tag}"
 
     stage "Deploy"
-    echo ("deploying ...")
     sh "chmod 755 container-push.sh"
-    sh "./container-push.sh ${registry} ${repository} ${tag}"
+    sh "$scripts/container-push.sh ${registry} ${repository} ${tag}"
+
+    stage "Tag"
+    sh 'chmod 755 git-tag.sh'
+    sh "$scirpts/git-tag.sh ${tag}"
 
     stage "Promotion"
         def userInput = input(
@@ -36,3 +42,4 @@ node {
     echo ("Env: " + userInput["env"])
     echo ("Target " + userInput["target"])
 }
+
