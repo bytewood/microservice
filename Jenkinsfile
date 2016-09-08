@@ -1,7 +1,7 @@
 node {
     def name = "ops-microservice"
     def semver = "0.1.0"
-    def ops_scripts_semver="0.3.0"
+    def ops_scripts_semver = "0.1.3"
     def registry = "localhost:5000"
 
     def repo = "https://github.com/bytewood/${name}.git"
@@ -13,7 +13,7 @@ node {
     stage "Checkout"
     git url: "${repo}"
     sh "chmod 755 ops-scripts.sh"
-    sh "./ops-scripts.sh ${ops_scripts_version}"
+    sh "./ops-scripts.sh ${ops_scripts_semver}"
 
     stage "Build"
     sh "chmod 755 gradlew"
