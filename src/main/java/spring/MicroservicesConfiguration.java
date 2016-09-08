@@ -2,7 +2,6 @@ package spring;
 
 import discovery.Discoverer;
 import discovery.MicroserviceSettings;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,8 +29,10 @@ public class MicroservicesConfiguration {
     }
 
     @Bean
-    LoopService defaultLoopService(RestOperations http, Discoverer discoverer, @Qualifier("microserviceASettings") MicroserviceSettings microserviceASettings) {
-        return new DefaultLoopService(http, discoverer, microserviceASettings);
+    LoopService defaultLoopService(RestOperations http, Discoverer discoverer, MicroserviceSettings microserviceASettings
+            , String hostName
+    ) {
+        return new DefaultLoopService(http, discoverer, microserviceASettings, hostName);
     }
 
 }

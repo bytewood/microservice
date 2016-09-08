@@ -20,11 +20,14 @@ public class DefaultLoopService implements LoopService {
     private RestOperations http;
     private Discoverer discoverer;
     private MicroserviceSettings microserviceASettings;
+    private String hostName;
 
-    public DefaultLoopService(RestOperations http, Discoverer discoverer, MicroserviceSettings microserviceASettings) {
+    public DefaultLoopService(RestOperations http, Discoverer discoverer, MicroserviceSettings microserviceASettings
+        , String hostName) {
         this.http = http;
         this.discoverer = discoverer;
         this.microserviceASettings = microserviceASettings;
+        this.hostName = hostName;
     }
 
     @Override
@@ -35,7 +38,7 @@ public class DefaultLoopService implements LoopService {
         return Echo.builder()
                     .echoing(message)
                     .from("microservice")
-                    .instance(System.getProperty("spring.cloud.client.hostname"))
+                    .instance(hostName)
                     .timestamp(ZonedDateTime.now())
                     .serviceQuery(
                             Query.builder()
