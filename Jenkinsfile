@@ -4,7 +4,7 @@ node {
     def ops_scripts_semver = "0.1.3"
     def registry = "localhost:5000"
 
-    def repo = "git@github.com:bytewood/ops-microservice.git"
+    def repo = "git@github.com:bytewood/${name}.git"
 
     def tag = "${semver}.${env.BUILD_NUMBER}"
     def repository = "bytewood/${name}"
@@ -37,13 +37,5 @@ node {
     sh "chmod 755 $scripts/git-tag.sh"
     sh "$scripts/git-tag.sh ${tag}"
 
-    stage "Promotion"
-        def userInput = input(
-            id: 'userInput', message: 'Let\'s promote?', parameters: [
-            [$class: 'TextParameterDefinition', defaultValue: 'qa', description: 'Environment', name: 'env'],
-            [$class: 'TextParameterDefinition', defaultValue: 'qa1', description: 'Target', name: 'target']
-        ])
-    echo ("Env: " + userInput["env"])
-    echo ("Target " + userInput["target"])
 }
 
