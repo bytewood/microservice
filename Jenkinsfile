@@ -1,12 +1,13 @@
 node {
     def name = "ops-microservice"
-    def version = "0.1.0"
-    def ops_scripts_version="0.3.0"
-
+    def semver = "0.1.0"
+    def ops_scripts_semver="0.3.0"
     def registry = "localhost:5000"
 
-    def repository = "bytewood/${name}"
     def repo = "https://github.com/bytewood/${name}.git"
+
+    def tag = "${semver}.${env.BUILD_NUMBER}"
+    def repository = "bytewood/${name}"
     def scripts = "ops-scripts"
 
     stage "Checkout"
