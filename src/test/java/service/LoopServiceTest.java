@@ -51,7 +51,7 @@ public class LoopServiceTest {
         when(http.getForObject(anyString(), any()))
                 .thenReturn(microservice);
 
-        testObject = new DefaultLoopService(http, discoverer, microserviceASettings);
+        testObject = new DefaultLoopService(http, discoverer, microserviceASettings, "test-host-name");
     }
 
     @Test
