@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import service.LoopService;
 import service.model.Echo;
-import service.model.Query;
 
 import java.time.ZonedDateTime;
 
