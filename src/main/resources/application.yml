@@ -1,10 +1,14 @@
+spring:
+  application:
+    name: microservice
 server:
   port: 8881
   contextPath: /api/0.1
 abc:
-    abc: "${ABC:pqr}"
-loopservice:
+  abc: "${ABC:pqr}"
+microservice-a:
   protocol: http
-  ip: microservice-a
+  ip: localhost
   port: 8882
   context: /api/0.1
+

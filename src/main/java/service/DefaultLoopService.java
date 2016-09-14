@@ -1,7 +1,8 @@
 package service;
 
 import discovery.Discoverer;
-import discovery.MicroserviceSettings;
+import discovery.MicroserviceASettings;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.client.RestOperations;
 import service.model.Echo;
@@ -9,6 +10,7 @@ import service.model.Microservice;
 import service.model.Query;
 
 import java.net.URI;
+import java.net.URLEncoder;
 import java.time.ZonedDateTime;
 
 /**
@@ -17,12 +19,14 @@ import java.time.ZonedDateTime;
 @Slf4j
 public class DefaultLoopService implements LoopService {
 
+    public static final String MICROSERVICE = "microservice";
+    public static final String MICROSERVICE_A = "microservice-a";
     private RestOperations http;
     private Discoverer discoverer;
-    private MicroserviceSettings microserviceASettings;
+    private MicroserviceASettings microserviceASettings;
     private String hostName;
 
-    public DefaultLoopService(RestOperations http, Discoverer discoverer, MicroserviceSettings microserviceASettings
+    public DefaultLoopService(RestOperations http, Discoverer discoverer, MicroserviceASettings microserviceASettings
         , String hostName) {
         this.http = http;
         this.discoverer = discoverer;
@@ -32,24 +36,38 @@ public class DefaultLoopService implements LoopService {
 
     @Override
     public Echo loop(String message) {
-        URI uri = discoverer.locate("microservice-a");
-        String url = resolveURL(uri);
+        URI uri = discoverer.locate(MICROSERVICE_A);
+        String url = resolveURL(uri, message);
         Microservice m = http.getForObject(url, Microservice.class, message);
         return Echo.builder()
                     .echoing(message)
-                    .from("microservice")
+                    .from(MICROSERVICE)
                     .instance(hostName)
                     .timestamp(ZonedDateTime.now())
                     .serviceQuery(
                             Query.builder()
-                                    .request("microservice-a")
+                                    .request(microserviceASettings.uri().toString())
                                     .response(m)
                                     .build()
                     ).build();
 
     }
 
-    String resolveURL(URI baseUri) {
-        return baseUri.resolve(microserviceASettings.getContext()+"/loop").toString();
+    @Override
+    public Echo echo(String message) {
+        return Echo.builder()
+                .echoing(message)
+                .from(MICROSERVICE)
+                .instance(hostName)
+                .build();
     }
+
+    @SneakyThrows
+    String resolveURL(URI baseUri, String message) {
+        String m = URLEncoder.encode(message, "UTF-8").toString();
+        String url = baseUri.resolve(microserviceASettings.getContext() + "/echo?message=" + m ).toString();
+        log.debug("Microservice url :: " + url.toString());
+        return url;
+    }
+
 }

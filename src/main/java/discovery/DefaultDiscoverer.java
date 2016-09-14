@@ -3,16 +3,15 @@ package discovery;
 import lombok.SneakyThrows;
 
 import java.net.URI;
-import java.net.URL;
 
 /**
  * © 2016 org.bytewood
  */
 public class DefaultDiscoverer implements Discoverer {
 
-    private MicroserviceSettings settings;
+    private MicroserviceASettings settings;
 
-    public DefaultDiscoverer(MicroserviceSettings settings) {
+    public DefaultDiscoverer(MicroserviceASettings settings) {
         this.settings = settings;
     }
 

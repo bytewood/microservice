@@ -8,7 +8,11 @@
         </encoder>
     </appender>
 
-    <logger name="discovery.consul.ConsulDiscoverer" level="DEBUG" additivity="false">
+    <logger name="service.DefaultLoopService" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="spring.Application" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
 

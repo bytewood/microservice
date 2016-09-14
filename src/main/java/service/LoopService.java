@@ -7,4 +7,5 @@ import service.model.Echo;
  */
 public interface LoopService {
     Echo loop(String message);
+    Echo echo(String message);
 }

@@ -1,7 +1,7 @@
 package spring;
 
 import discovery.Discoverer;
-import discovery.MicroserviceSettings;
+import discovery.MicroserviceASettings;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,15 +21,15 @@ public class MicroservicesConfiguration {
         return new RestTemplate();
     }
 
-    @ConfigurationProperties(prefix = "loopservice"
+    @ConfigurationProperties(prefix = "microservice-a"
             , locations = "${spring.config.location:classpath:}/application.yml")
     @Bean
-    public MicroserviceSettings microserviceASettings() {
-        return MicroserviceSettings.builder().build();
+    public MicroserviceASettings microserviceASettings() {
+        return MicroserviceASettings.builder().build();
     }
 
     @Bean
-    LoopService defaultLoopService(RestOperations http, Discoverer discoverer, MicroserviceSettings microserviceASettings
+    LoopService defaultLoopService(RestOperations http, Discoverer discoverer, MicroserviceASettings microserviceASettings
             , String hostName
     ) {
         return new DefaultLoopService(http, discoverer, microserviceASettings, hostName);

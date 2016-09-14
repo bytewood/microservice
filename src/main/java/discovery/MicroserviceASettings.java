@@ -11,7 +11,7 @@ import java.net.URI;
  */
 @Data
 @Builder
-public class MicroserviceSettings {
+public class MicroserviceASettings {
     private String protocol;
     private String ip;
     private int port;

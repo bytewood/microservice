@@ -33,7 +33,6 @@ public class ConsulDiscoverer implements Discoverer {
             throw new DiscoveryException(microservice + " is Undiscoverable") ;
         }
 
-        log.debug(microservice + " found @ " + uri.toString());
         return uri;
     }
 }

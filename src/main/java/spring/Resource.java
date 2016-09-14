@@ -7,26 +7,22 @@ import org.springframework.web.bind.annotation.RestController;
 import service.LoopService;
 import service.model.Echo;
 
-import java.time.ZonedDateTime;
-
 /**
  * © 2016 org.bytewood
  */
 @RestController
 public class Resource {
 
-    private Settings settings;
     private LoopService loopService;
 
     @Autowired
-    public Resource(Settings settings, LoopService loopService) {
-        this.settings = settings;
+    public Resource(LoopService loopService) {
         this.loopService = loopService;
     }
 
     @RequestMapping(value="/echo")
-    public String echo(@RequestParam(name = "message", required = false, defaultValue = "") String message) {
-        return message + " " + ZonedDateTime.now() + " " + settings.getAbc() + System.getProperty("line.separator");
+    public Echo echo(@RequestParam(name = "message", required = false, defaultValue = "AAAaaa___") String message) {
+        return loopService.echo(message);
     }
 
     @RequestMapping(value="/loop")

@@ -7,6 +7,7 @@ import lombok.Data;
  */
 @Data
 public class Microservice {
+    private String message;
     private String name;
     private String instance;
 }

@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: microservice
   cloud:
     consul:
       host: consul
@@ -8,6 +6,6 @@ spring:
       discovery:
         healthCheckPath: ${server.contextPath}/health
         healthCheckInterval: 1s
-        instanceId: ${spring.application.name}:${spring.application.instance_id:${hostname:localhost}}
+        instanceId: ${spring.application.instance_id:${HOSTNAME:${spring.application.name}}}
       config:
         failFast: true

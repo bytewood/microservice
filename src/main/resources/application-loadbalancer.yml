@@ -1,0 +1,7 @@
+
+microservice-a:
+  protocol: http
+  ip: localhost
+  port: 80
+  context: /microservice-a/api/0.1
+
