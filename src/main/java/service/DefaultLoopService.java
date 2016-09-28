@@ -64,9 +64,9 @@ public class DefaultLoopService implements LoopService {
 
     @SneakyThrows
     String resolveURL(URI baseUri, String message) {
-        String m = URLEncoder.encode(message, "UTF-8").toString();
+        String m = URLEncoder.encode(message, "UTF-8");
         String url = baseUri.resolve(microserviceASettings.getContext() + "/echo?message=" + m ).toString();
-        log.debug("Microservice url :: " + url.toString());
+        log.debug("Microservice url :: " + url);
         return url;
     }
 
