@@ -5,7 +5,7 @@ server:
   port: 8881
   contextPath: /api/0.1
 abc:
-  abc: "${ABC:pqr}"
+  abc: "${ABC:abc}"
 microservice-a:
   protocol: http
   ip: localhost
