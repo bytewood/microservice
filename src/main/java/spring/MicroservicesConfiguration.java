@@ -21,8 +21,7 @@ public class MicroservicesConfiguration {
         return new RestTemplate();
     }
 
-    @ConfigurationProperties(prefix = "microservice-a"
-            , locations = "${spring.config.location:classpath:}/application.yml")
+    @ConfigurationProperties(prefix = "microservice-a")
     @Bean
     public MicroserviceASettings microserviceASettings() {
         return MicroserviceASettings.builder().build();

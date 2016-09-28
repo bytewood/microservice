@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * © 2016 org.bytewood
  */
 @Component
-@ConfigurationProperties(prefix = "abc", locations = "${spring.config.location:classpath:}/application.yml")
+@ConfigurationProperties(prefix = "abc")
 @Data
 public class Settings {
     String abc;

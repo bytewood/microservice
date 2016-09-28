@@ -14,8 +14,7 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 public class LoadbalancerConfiguration {
 
-    @ConfigurationProperties(prefix = "microservice-a"
-        , locations = "${spring.config.location:classpath:}/application-loadbalancer.yml")
+    @ConfigurationProperties(prefix = "microservice-a")
     @Primary
     @Bean
     public MicroserviceASettings loadbalancerMicroserviceASettings() {
