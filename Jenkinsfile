@@ -1,7 +1,7 @@
 node {
     def name = "ops-microservice"
     def semver = "0.1.0"
-    def ops_scripts_semver = "0.1.3"
+    def ops_scripts_semver = "0.1.4"
     def registry = "localhost:5000"
 
     def repo = "git@github.com:bytewood/${name}.git"
