@@ -5,7 +5,7 @@ spring:
       port: 8500
       discovery:
         healthCheckPath: ${server.contextPath}/health
-        healthCheckInterval: 1s
+        healthCheckInterval: 3s
         instanceId: ${spring.application.instance_id:${HOSTNAME:${spring.application.name}}}
       config:
         failFast: true
