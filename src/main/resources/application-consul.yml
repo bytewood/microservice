@@ -6,6 +6,6 @@ spring:
       discovery:
         healthCheckPath: ${server.contextPath}/health
         healthCheckInterval: 3s
-        instanceId: ${spring.application.instance_id:${HOSTNAME:${spring.application.name}}}
+        instanceId: ${spring.application.name}:${HOSTNAME:${random.value}}
       config:
         failFast: true
