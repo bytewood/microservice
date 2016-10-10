@@ -39,6 +39,8 @@ dependencies {
 
     compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
 
+    compile "org.springframework.boot:spring-boot-devtools"
+
     testCompile "junit:junit"
     testCompile "org.assertj:assertj-core:${assertj_version}"
     testCompile "org.springframework.boot:spring-boot-starter-test"
