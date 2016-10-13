@@ -17,7 +17,6 @@ public class Echo {
     private ZonedDateTime timestamp;
     private String from;
     private String instance;
-    private String variable;
     @Singular
     private List<Query> serviceQueries;
 }
