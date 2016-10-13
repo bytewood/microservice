@@ -41,7 +41,7 @@ public class LoopServiceTest {
                 .protocol("http")
                 .ip("localhost")
                 .port(8888)
-                .context("/api/0.1")
+                .context("/")
                 .build();
 
         Microservice microservice = new Microservice();
@@ -58,7 +58,7 @@ public class LoopServiceTest {
     @Test
     public void resolveURL() throws Exception {
         String actual = testObject.resolveURL(URI.create("http://localhost:8888"), "testing");
-        assertThat(actual).isEqualTo("http://localhost:8888/api/0.1/echo?message=testing");
+        assertThat(actual).isEqualTo("http://localhost:8888/echo?message=testing");
     }
 
     @Test
