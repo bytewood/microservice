@@ -4,7 +4,7 @@ spring:
       host: consul
       port: 8500
       discovery:
-        healthCheckPath: ${server.contextPath}/health
+        healthCheckPath: ${management.contextPath}/health
         healthCheckInterval: 3s
         instanceId: ${spring.application.name}:${HOSTNAME:${random.value}}
       config:
