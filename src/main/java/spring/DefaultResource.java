@@ -12,7 +12,7 @@ import service.model.Echo;
  * © 2016 org.bytewood
  */
 @RestController
-public class Resource {
+public class DefaultResource {
 
     private LoopService loopService;
 
@@ -20,7 +20,7 @@ public class Resource {
     private Settings settings;
 
     @Autowired
-    public Resource(LoopService loopService) {
+    public DefaultResource(LoopService loopService) {
         this.loopService = loopService;
     }
 
@@ -38,9 +38,8 @@ public class Resource {
         return loopService.loop(customizeMessage(message));
     }
 
-    @RequestMapping(value="/error")
-    @SneakyThrows
-    public void error() {
-        throw new Exception("Some arbitrary error");
+    @RequestMapping(value="/problem")
+    public String problem() {
+        throw new RuntimeException("Some problem");
     }
 }
