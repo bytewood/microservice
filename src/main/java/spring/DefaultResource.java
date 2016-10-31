@@ -1,5 +1,6 @@
 package spring;
 
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,4 +38,9 @@ public class Resource {
         return loopService.loop(customizeMessage(message));
     }
 
+    @RequestMapping(value="/error")
+    @SneakyThrows
+    public void error() {
+        throw new Exception("Some arbitrary error");
+    }
 }
