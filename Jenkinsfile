@@ -31,7 +31,7 @@ node {
 
     stage ("Containerize") {
         sh "chmod 755 $scripts/container-build.sh"
-        sh "$scripts/container-build.sh ${repository} ${tag}"
+        sh "$scripts/container-build.sh ${registry} ${repository} ${tag}"
     }
 
     stage ("Deploy") {
